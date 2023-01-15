@@ -161,28 +161,10 @@ public class FecHandler {
   public boolean checkCorrection(int nr, HashMap<Integer, RTPpacket> mediaPackets) {
     // TASK complete this method!
 
-    // wenn nur ein Paket der Gruppe fehlt -> korrigierbar
-    // FEC-Pakete verloren?
-
-    // Index-Nummer nr des verlorenen Pakets
-    // RTP- suchen Indizes der zugehörigen Pakete
-    // -> steht in fecListe
-    // Indizes die nicht in mediaPackets sind -> zählen
-
-    // wichtige parameter
-    // HashMap<Integer, FECpacket> fecStack = new HashMap<>(); // list of fec
-    // packets
-    // HashMap<Integer, Integer> fecNr = new HashMap<>(); // Snr of corresponding
-    // fec packet
-    // HashMap<Integer, List<Integer>> fecList = new HashMap<>(); // list of
-    // involved media packets
-
-    // FEC-Paket weg
-    if (fecList.get(nr) == null) {
+     if (fecList.get(nr) == null) {
       return false;
     }
-    // okay haben FEC PAcket -> schauene was noch so fehlt
-    // https://stackoverflow.com/questions/29625529/hashmap-with-streams-in-java-8-streams-to-collect-value-of-map
+
     int counter = 0;
     List<Integer> l = fecList.get(nr);
     for (Integer i : l) {
@@ -201,24 +183,6 @@ public class FecHandler {
    * @return RTP packet
    */
   public RTPpacket correctRtp(int nr, HashMap<Integer, RTPpacket> mediaPackets) {
-
-    // nr ist nur für das zu kortrigierende Packet ?
-
-    // XOR der dazugehörigen mit FEC
-    // fec.getRtpList - involvierten Media-RTPs -> benötigen die fecNr
-    // getPacket() - komplettes FEC-Paket -<y Bytearray
-    // addRtp() macht meine berechnungen
-    // getLostRtp() generiert mir dann mein verlorenes
-
-    // wichtige parameter
-    // HashMap<Integer, FECpacket> fecStack = new HashMap<>(); // list of fec
-    // packets
-    // HashMap<Integer, Integer> fecNr = new HashMap<>(); // Snr of corresponding
-    // fec packet
-    // HashMap<Integer, List<Integer>> fecList = new HashMap<>(); // list of
-    // involved media packets
-
-    // involvierten Media-RTPs
 
     List<Integer> InvoPackete = fecList.get(nr);
 
